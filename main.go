@@ -4,6 +4,7 @@ import (
 	"github.com/collinzh/AdventOfCode2019/day1"
 	"github.com/collinzh/AdventOfCode2019/day2"
 	"github.com/collinzh/AdventOfCode2019/day3"
+	"github.com/collinzh/AdventOfCode2019/day4"
 )
 
 type Solution interface {
@@ -13,7 +14,7 @@ type Solution interface {
 }
 
 func main() {
-	RunDay3()
+	RunDay4()
 }
 
 func RunDay1() {
@@ -31,4 +32,10 @@ func RunDay2() {
 func RunDay3() {
 	s := &day3.D3Solution{}
 	s.RunSolutionP1()
+}
+
+func RunDay4() {
+	s := &day4.D4Solution{}
+	s.RunSolutionP1()
+	s.RunSolutionP2()
 }
