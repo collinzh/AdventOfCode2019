@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 type Position struct {
@@ -15,11 +16,39 @@ type Position struct {
 type Direction int
 
 const (
+	None  = Direction(0)
 	Up    = Direction(1)
 	Down  = Direction(2)
 	Left  = Direction(3)
 	Right = Direction(4)
+
+	MaxInteger = 0x7fffffff
 )
+
+func ParseDirection(dir string) Direction {
+	if strings.Compare(strings.ToUpper(dir), "U") == 0 || strings.Compare(strings.ToUpper(dir), "UP") == 0 {
+		return Up
+	}
+
+	if strings.Compare(strings.ToUpper(dir), "D") == 0 || strings.Compare(strings.ToUpper(dir), "DOWN") == 0 {
+		return Down
+	}
+
+	if strings.Compare(strings.ToUpper(dir), "L") == 0 || strings.Compare(strings.ToUpper(dir), "LEFT") == 0 {
+		return Left
+	}
+
+	if strings.Compare(strings.ToUpper(dir), "R") == 0 || strings.Compare(strings.ToUpper(dir), "RIGHT") == 0 {
+		return Right
+	}
+
+	panic(errors.New("Unrecognized direction string " + dir))
+}
+
+type Move struct {
+	Direction
+	Step int
+}
 
 func (d Direction) TurnLeft() Direction {
 	switch d {
